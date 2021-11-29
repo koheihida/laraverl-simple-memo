@@ -1,12 +1,13 @@
 @extends('layouts.app')
-
+@section('javascript')
+<script src="/js/confirm.js"></script>
 @section('content')
 <div class="card">
     <div class="card-header">
         メモ編集
-        <form class="card-body" action="{{route('destroy')}}" method="POST">
+        <form class="card-body" id="delete-form" action="{{route('destroy')}}" method="POST">
             @csrf
-            <button type="submit">削除</button>
+            <button type="submit" onclick="deleteHandle(event);">削除</button>
             <input type='hidden' name='memo_id' value='{{$edit_memo[0]["id"]}}' />
         </form>
     </div>
