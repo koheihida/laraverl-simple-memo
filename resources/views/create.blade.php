@@ -8,6 +8,9 @@
         <div class="form-floating">
             <textarea class="form-control" placeholder="ここにメモを入力" name="content" style="height: 100px"></textarea>
         </div>
+        @error('content')
+            <div class='alert alert-danger'>no content error!!</div>
+        @enderror
     @foreach($tags as $t)
         <div class="form-check form-check-inline mb-3">
             <input class="form-check-input" type="checkbox" name="tags[]" id="{{$t['id']}}" value="{{$t['id']}}">

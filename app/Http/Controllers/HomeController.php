@@ -39,6 +39,7 @@ class HomeController extends Controller
     public function store(Request $request)
     {
         $posts = $request->all();
+        $request->validate(['content'=>'required']);
         DB::transaction(function() use($posts) {
            $memo_id = Memo::insertGetId(['content' => $posts['content'], 'user_id' => \Auth::id()]);
            $tag_exists = Tag::where('user_id','=',\Auth::id())->where('name','=',$posts['new_tag'])->exists();
@@ -84,6 +85,7 @@ class HomeController extends Controller
     public function update(Request $request)
     {
         $posts = $request->all();
+        $request->validate(['content'=>'required']);
         DB::transaction(function() use($posts){
             Memo::where('id',$posts['memo_id'])->update(['content' => $posts['content'], 'user_id' => \Auth::id()]);
             MemoTag::where('memo_id','=',$posts['memo_id'])->delete();

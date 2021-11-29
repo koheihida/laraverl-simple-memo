@@ -16,7 +16,9 @@
         <div class="form-floating">
             <textarea class="form-control" placeholder="ここにメモを入力" rows="3" name="content" style="height: 100px">{{$edit_memo[0]['content']}}</textarea>
         </div>
-
+        @error('content')
+            <div class='alert alert-danger'>no content error!!</div>
+        @enderror
         @foreach($tags as $t)
         <div class="form-check form-check-inline mb-3">
             {{-- 3項演算子 → if文を1行で書く方法 {{ 条件 ? trueだったら : falseだったら }}--}}
